@@ -1,0 +1,10 @@
+
+.background {
+  background-image: url('../../assets/images/macarons-2548827_1280.jpg'); /* כתובת ה-URL של תמונת הרקע */
+  background-repeat: no-repeat; /* למנוע חזרה */
+  background-attachment: fixed; /* כדי לשמור על תמונת הרקע במקום, גם כאשר המשתמש גולל למעלה או למטה */
+  background-size: cover; /* התאמה לגודל העמוד */
+
+}
+
+

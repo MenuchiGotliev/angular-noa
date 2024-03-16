@@ -1,0 +1,34 @@
+<div *ngIf="recipe" class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1>{{ recipe.recipeName }}</h1>
+        <div>
+          <p>קטגוריה: {{ recipe.categoryId }}</p>
+          <!-- Add icon based on category if needed -->
+        </div>
+        <div>
+          <p>דרגת קושי: {{""|difficultyLevel:recipe?.difficultyLevel}}</p>
+          <h4>preparation time {{ recipe.preparationTime| preparationTime }}</h4>
+        </div>
+        <div>
+          <h3>מרכיבים:</h3>
+          <ul>
+            <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
+          </ul>
+        </div>
+        <div>
+          <h3>אופן ההכנה:</h3>
+          <ol>
+            <li *ngFor="let step of recipe.preparationSteps">{{ step }}</li>
+          </ol>
+        </div>
+        <div *ngIf="isOwner">
+          <button (click)="deleteRecipe()" class="btn btn-danger">מחק מתכון</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <img src={{recipe?.imageRouting}} alt="Recipe Image" class="img-fluid">
+      </div>
+    </div>
+  </div>
+  

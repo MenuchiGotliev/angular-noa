@@ -1,0 +1,30 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="background" class="button-container">
+  <form (ngSubmit)="login()">
+<div>
+  <mat-form-field appearance="outline">
+    <mat-label>Outline form field</mat-label>
+    <input matInput type="text" [(ngModel)]="username" name="username" required>
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+
+  </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput [(ngModel)]="password" name="password" [type]="hide ? 'password' : 'text'" required>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+    <div>
+      
+      <button mat-raised-button color="primary" type="submit" class="login-button">Login</button>
+    </div>
+
+  </form>
+</div>

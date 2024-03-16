@@ -1,0 +1,24 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>dfghj</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="https://cdn.pixabay.com/photo/2017/07/28/14/29/macarons-2548827_640.jpg" alt = "asdfghj">
+  <mat-card-content>
+    <h5>{{recipe?.recipeName}}</h5>
+    <p>
+      {{recipe?.preparationTime}}
+    </p>
+    <p>
+      difficulty level {{""|difficultyLevel:recipe?.difficultyLevel}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>Like</button>
+
+    <button  mat-button  (click) = "toDetails()">To The Recipe▷</button>
+    <button mat-button (click) = "toEdit()">✎</button>
+
+
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>הוספת מתכון חדש</title>
+  <!-- הוספת Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* סגנונות מותאמים אישית */
+    .btn-custom {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-custom:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form [formGroup]="addRecipeForm">
+          <h1 class="text-center">הוספת מתכון חדש</h1>
+          <div class="form-group">
+            <label for="recipeName">שם המתכון:</label>
+            <input type="text" id="recipeName" formControlName="recipeName" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for="categoryId">קטגוריה:</label>
+            <select id="categoryId" formControlName="categoryId" class="form-control">
+              <option value="">בחר קטגוריה...</option>
+              <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="preparationTime">זמן הכנה (דקות):</label>
+            <input type="number" id="preparationTime" formControlName="preparationTime" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for="difficultyLevel">רמת קושי:</label>
+            <select id="difficultyLevel" formControlName="difficultyLevel" class="form-control">
+              <option value="">בחר רמת קושי...</option>
+              <option value="1">קל</option>
+              <option value="2">בינוני</option>
+              <option value="3">קשה</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="ingredients">מרכיבים:</label>
+            <div formArrayName="ingredients">
+              <div *ngFor="let ingredient of ingredients.controls; let i = index" class="ingredient-row">
+                <input type="text" [(ngModel)]="ingredient.value" class="form-control mb-2" placeholder="הזן מרכיב">
+                <button type="button" (click)="removeIngredient(i)" class="btn btn-danger">הסר</button>
+              </div>
+              <button type="button" (click)="addIngredient()" class="btn btn-primary">הוסף מרכיב</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="preparationSteps">הוראות הכנה:</label>
+            <div formArrayName="preparationSteps">
+              <div *ngFor="let PreparationStep of preparationSteps.controls; let i = index" class="instruction-row">
+                <input type="text" [(ngModel)]="PreparationStep.value" class="form-control mb-2" placeholder="הזן הוראה">
+                <button type="button" (click)="removeInstruction(i)" class="btn btn-danger">הסר</button>
+              </div>
+              <button type="button" (click)="addInstruction()" class="btn btn-primary">הוסף הוראה</button>
+            </div>
+          </div>
+
+          <button type="submit" (click)="onSubmit()" class="btn btn-custom btn-block">שמור</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
